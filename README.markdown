@@ -80,10 +80,57 @@ review_comments = [
 ```
 
 ### Example Output
-The output will be a Markdown report with sections for each comment, including:
-- Positive rephrasing of the feedback.
-- Explanation of the "why" behind the suggestion.
-- A concrete code improvement example.
+The output will be a Markdown report similar to the following based on the example input:
+
+**Code Review Feedback**
+=======================
+
+### Comment 1: Inefficient Looping
+
+#### Positive Rephrasing
+Great effort on trying to filter active users! However, we can optimize the loop to make it more efficient.
+
+#### The 'Why'
+The issue here is that we're iterating over the `users` list and then again over the filtered list `results`. This is unnecessary and can be avoided by using a more efficient filtering approach.        
+
+#### Suggested Improvement
+We can use a list comprehension to filter the users in a single pass. Here's an example:
+```python
+def get_active_users(users):
+    return [u for u in users if u.is_active and u.profile_complete]
+```
+This code achieves the same result but is more concise and efficient.
+
+### Comment 2: Variable Naming
+
+#### Positive Rephrasing
+Your variable name `u` is a good start, but we can make it more descriptive to improve code readability.
+
+#### The 'Why'
+Variable naming is an essential aspect of code readability. Using descriptive names helps other developers (and your future self) quickly understand the code's intent.
+
+#### Suggested Improvement
+Let's rename the variable to something more descriptive, like `user`. This makes it clear that we're iterating over a list of user objects.
+```python
+def get_active_users(users):
+    return [user for user in users if user.is_active and user.profile_complete]
+```
+
+### Comment 3: Redundant Boolean Comparison
+
+#### Positive Rephrasing
+You're close to writing clean code! However, we can simplify the boolean comparison to make it more readable.
+
+#### The 'Why'
+In Python, boolean values can be used directly in conditional statements, eliminating the need for explicit comparisons.
+
+#### Suggested Improvement
+We can simplify the condition by removing the `== True` comparison. Here's the updated code:
+```python
+def get_active_users(users):
+    return [user for user in users if user.is_active and user.profile_complete]
+```
+By applying these suggestions, we've improved the code's efficiency, readability, and maintainability. Great job on taking the first step towards writing clean and efficient code!
 
 ## Workflow
 1. **Input Processing**: The `main.py` script provides a JSON-like object with `code_snippet` and `review_comments`.
@@ -97,5 +144,17 @@ The output will be a Markdown report with sections for each comment, including:
 - **Model Adjustment**: Modify the `repo_id` in `code_reviewer.py` to use a different Hugging Face model if desired.
 - **Add Features**: Extend the `CodeReviewer` class to include contextual awareness or resource links as suggested in the hackathon guidelines.
 
-## Thanks for this opportunity.
+## Scoring Breakdown (For Reference)
+- **Functionality & Correctness (25%)**: Does the program run and meet technical requirements?
+- **Quality of AI Output & Prompt Engineering (45%)**: How insightful and context-aware is the AI's output?
+- **Code Quality & Documentation (20%)**: Is the code well-structured and documented?
+- **Innovation & "Stand Out" Features (10%)**: Does it include creative or valuable extras?
 
+## Contributing
+Feel free to fork this repository, make improvements, and submit pull requests. Suggestions for enhancing empathy, adding documentation links, or optimizing performance are welcome.
+
+## License
+[Add license information if applicable, e.g., MIT License]
+
+## Contact
+For questions or support, reach out via [your contact info or repository issues page].
